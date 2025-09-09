@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Smooth scrolling pour les ancres */
+html {
+  scroll-behavior: smooth;
+}

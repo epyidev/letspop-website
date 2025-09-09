@@ -1,0 +1,44 @@
+{
+  "projects": [
+    {
+      "id": "1",
+      "name": "Game Workers Area",
+      "shortDescription": "The largest French-speaking FiveM development community with nearly 5,000 active members.",
+      "fullDescription": "With nearly 5,000 active members and over 15,000 registered members, Game Workers Area is one of the largest French-speaking servers for support in development and creation related to FiveM. Our community brings together developers, creators, and enthusiasts who share knowledge, collaborate on projects, and push the boundaries of what's possible in FiveM development.",
+      "logo": "/projects/gameworkersarea.png",
+      "link": "https://discord.gg/5G7z3E7awH"
+    },
+    {
+      "id": "2", 
+      "name": "Lyre Scripts",
+      "shortDescription": "High-quality FiveM scripts provider since 2022, offering unique and innovative solutions.",
+      "fullDescription": "Since 2022, Lyre Scripts has been offering high-quality scripts for FiveM servers. Lyre Scripts provides unique and innovative solutions to help servers stand out with custom features, optimized performance, and exceptional user experiences. Our scripts are designed with attention to detail and continuous support for server owners.",
+      "logo": "/projects/lyre.png",
+      "link": "https://lyre.tebex.io/"
+    },
+    {
+      "id": "3",
+      "name": "Metropia", 
+      "shortDescription": "A Minecraft roleplay server with 5 years of unique universe and innovative gameplay.",
+      "fullDescription": "With 5 years of existence, Metropia is a Minecraft roleplay server that has stood out for its unique universe and innovative gameplay. The project is currently in development for the release of a future new version that will bring even more immersive experiences, enhanced storytelling mechanics, and cutting-edge features to the roleplay community.",
+      "logo": "/projects/metropia.png",
+      "link": "https://metropia.lets-pop.fr/"
+    },
+    {
+      "id": "4",
+      "name": "VASTE",
+      "shortDescription": "An accessible game engine platform for creating custom universes with modular tools.",
+      "fullDescription": "VASTE aims to be a platform enabling everyone to create their own universe. Functioning as an extremely accessible game engine, VASTE will allow any user to launch a fully customized dedicated server. With modular mapping and development tools, based on an assembly of code blocks, users will easily be able to adapt and enrich their servers as they wish. The project is currently under development with a focus on user-friendly interfaces and powerful customization capabilities.",
+      "logo": "/projects/vaste.png",
+      "link": ""
+    },
+    {
+      "id": "5",
+      "name": "C.A.L.E.I",
+      "shortDescription": "AI research project featuring multiple artificial intelligences interacting in simulated environments.",
+      "fullDescription": "With the ambition to conduct research on AI technologies, the CALEI project offers an ambitious experience where multiple artificial intelligences interact in a simulated environment. The goal is to observe how these AIs autonomously develop strategies to survive, communicate, and evolve. This cutting-edge research explores emergent behaviors, adaptive learning, and the potential for AI collaboration in complex scenarios.",
+      "logo": "/projects/calei.png", 
+      "link": ""
+    }
+  ]
+}
