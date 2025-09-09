@@ -16,6 +16,7 @@ interface GridCell {
 
 const gridContainer: Ref<HTMLDivElement | null> = ref(null);
 const mousePosition: MousePosition = reactive({ x: null, y: null });
+const globalMousePosition: { x: number; y: number } = reactive({ x: 0, y: 0 });
 const smoothedPos: { x: number; y: number } = reactive({ x: 0, y: 0 });
 const isMouseActive: Ref<boolean> = ref(false);
 const SMOOTHING_FACTOR = 0.12; // lower = longer delay
@@ -41,12 +42,35 @@ let throttleId: number | null = null;
 function handleMouseMove(event: MouseEvent): void {
   if (throttleId) return;
   throttleId = requestAnimationFrame(() => {
+    // Store global mouse position for scroll updates
+    globalMousePosition.x = event.clientX;
+    globalMousePosition.y = event.clientY;
+    
     if (!gridContainer.value) return;
     const rect = gridContainer.value.getBoundingClientRect();
     mousePosition.x = event.clientX - rect.left;
     mousePosition.y = event.clientY - rect.top;
     isMouseActive.value = true;
     throttleId = null;
+  });
+}
+
+// Throttled scroll tracking
+let scrollThrottleId: number | null = null;
+function handleScroll(): void {
+  if (scrollThrottleId) return;
+  scrollThrottleId = requestAnimationFrame(() => {
+    if (!gridContainer.value) return;
+    const rect = gridContainer.value.getBoundingClientRect();
+    
+    // Update mouse position relative to the new container position
+    // Use the stored global mouse position to recalculate relative position
+    if (globalMousePosition.x !== 0 || globalMousePosition.y !== 0) {
+      mousePosition.x = globalMousePosition.x - rect.left;
+      mousePosition.y = globalMousePosition.y - rect.top;
+    }
+    
+    scrollThrottleId = null;
   });
 }
 
@@ -72,9 +96,9 @@ const highlightedCells = computed((): GridCell[] => {
       const centerX: number = x + DIAMOND_HALF_WIDTH;
       const centerY: number = y + DIAMOND_HALF_HEIGHT;
 
-      // Calculate distance from mouse to cell center (use null-safe fallback)
+      // Calculate distance from mouse to cell center
       let distance = Infinity;
-      if (smoothedPos.x !== null && smoothedPos.y !== null) {
+      if (mousePosition.x !== null && mousePosition.y !== null) {
         distance = Math.sqrt(
           Math.pow(smoothedPos.x - centerX, 2) +
             Math.pow(smoothedPos.y - centerY, 2)
@@ -103,13 +127,18 @@ const highlightedCells = computed((): GridCell[] => {
 
 onMounted((): void => {
   window.addEventListener("mousemove", handleMouseMove, { passive: true });
+  window.addEventListener("scroll", handleScroll, { passive: true });
   animateSmooth();
 });
 
 onUnmounted((): void => {
   window.removeEventListener("mousemove", handleMouseMove);
+  window.removeEventListener("scroll", handleScroll);
   if (throttleId !== null) {
     cancelAnimationFrame(throttleId);
+  }
+  if (scrollThrottleId !== null) {
+    cancelAnimationFrame(scrollThrottleId);
   }
 });
 </script>
